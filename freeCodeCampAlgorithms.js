@@ -223,3 +223,23 @@ function convertHTML(str) {
 
   return charArr.join("");
 }
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+function sumFibs(num) {
+  let fibArr = [1, 1];
+  let total = 2;
+
+  for (let i = 1; fibArr[i - 1] + fibArr[i] <= num; i++) {
+    let currentFibNumber = fibArr[i - 1] + fibArr[i];
+
+    if (currentFibNumber % 2 === 1) {
+      total += currentFibNumber;
+    }
+    fibArr.push(fibArr[i - 1] + fibArr[i]);
+  }
+
+  return total;
+}
+
+sumFibs(10);
