@@ -202,3 +202,24 @@ function uniteUnique(...arr) {
 }
 
 uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]);
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+var escapeChars = {
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': "&quot;",
+  "&": "&amp;",
+  "'": "&apos;"
+};
+function convertHTML(str) {
+  let charArr = str.split("");
+
+  for (let i = 0; i < charArr.length; i++) {
+    if (Object.keys(escapeChars).includes(charArr[i])) {
+      charArr[i] = escapeChars[charArr[i]];
+    }
+  }
+
+  return charArr.join("");
+}
