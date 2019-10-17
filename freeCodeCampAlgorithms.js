@@ -263,3 +263,30 @@ function sumPrimes(num) {
 }
 
 sumPrimes(977);
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+const smallestCommons = arr => {
+  let min = 0;
+  let max = 0;
+  if (arr[0] < arr[1]) {
+    min = arr[0];
+    max = arr[1];
+  } else {
+    min = arr[1];
+    max = arr[0];
+  }
+  let final = max;
+
+  for (let i = max - 1; i >= min; i--) {
+    if (final % i) {
+      final += max;
+      i = max;
+    }
+  }
+  return final;
+};
+
+smallestCommons([1, 5]);
+
+/////////////////////////////////////////////////////////////////////////////////////
