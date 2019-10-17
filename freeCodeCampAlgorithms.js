@@ -318,3 +318,108 @@ function steamrollArray(arr) {
 }
 
 steamrollArray([1, [2], [3, [[4]]]]);
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+
+function palindrome(str) {
+  // Good luck!
+  let purgedStr = str.toLowerCase().trim().replace(/[^\w]|_/g, "").replace(/\s+/g, " ");
+  let reversedStr = purgedStr.split("").reverse().join("");
+  console.log(purgedStr)
+  console.log(reversedStr)
+  return purgedStr == reversedStr;
+}
+
+
+palindrome("My age is 0, 0 si ega ym.");
+
+/////////////////////////////////////////////////////////////////////////////////////
+var Person = function (firstAndLast) {
+  // Complete the method below and implement the others similarly
+  this.getFullName = function () {
+    return firstAndLast;
+  }
+  this.getFirstName = function () {
+    return firstAndLast.split(" ")[0];
+  }
+  this.getLastName = function () {
+    return firstAndLast.split(" ")[1];
+  }
+  this.setFirstName = function (first) {
+    let name = firstAndLast.split(" ");
+    name[0] = first;
+    firstAndLast = name.join(" ");
+
+  }
+  this.setLastName = function (last) {
+    let name = firstAndLast.split(" ");
+    name[1] = last;
+    firstAndLast = name.join(" ");
+
+  }
+  this.setFullName = function (fullname) {
+    firstAndLast = fullname;
+
+
+  }
+
+};
+
+var bob = new Person('Bob Ross');
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+function addTogether() {
+  var checkNum = function (num) {
+    if (typeof num !== "number") {
+      return undefined;
+    } else return num;
+  };
+
+  if (arguments.length > 1) {
+    var a = checkNum(arguments[0]);
+    var b = checkNum(arguments[1]);
+    if (a === undefined || b === undefined) {
+      return undefined;
+    } else {
+      return a + b;
+    }
+  } else {
+    var c = arguments[0];
+
+    if (checkNum(c)) {
+      return function (arg2) {
+        if (c === undefined || checkNum(arg2) === undefined) {
+          return undefined;
+        } else {
+          return c + arg2;
+        }
+      };
+    }
+  }
+}
+
+addTogether(2, 3);
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+function orbitalPeriod(arr) {
+  var GM = 398600.4418;
+  var earthRadius = 6367.4447;
+
+  for (var prop in arr) {
+    var orbitalPer = Math.round(
+      2 * Math.PI * Math.sqrt(Math.pow(arr[prop].avgAlt + earthRadius, 3) / GM)
+    );
+    delete arr[prop].avgAlt;
+    arr[prop].orbitalPeriod = orbitalPer;
+  }
+
+  return arr;
+}
+
+orbitalPeriod([{ name: "sputnik", avgAlt: 35873.5553 }]);
