@@ -243,3 +243,23 @@ function sumFibs(num) {
 }
 
 sumFibs(10);
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+function sumPrimes(num) {
+  let total = 2;
+  for (let i = 1; i <= num; i++) {
+    for (let z = 2; z < i; z++) {
+      if (i % z === 0) {
+        break;
+      }
+      if (z === i - 1) {
+        total += i;
+      }
+    }
+  }
+
+  return total;
+}
+
+sumPrimes(977);
