@@ -307,3 +307,14 @@ function dropElements(arr, func) {
 dropElements([1, 2, 3, 4], function(n) {
   return n > 5;
 });
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+function steamrollArray(arr) {
+  while (arr.some(element => Array.isArray(element))) {
+    arr = arr.flat();
+  }
+  return arr;
+}
+
+steamrollArray([1, [2], [3, [[4]]]]);
