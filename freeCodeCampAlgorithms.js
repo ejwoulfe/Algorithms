@@ -290,3 +290,20 @@ const smallestCommons = arr => {
 smallestCommons([1, 5]);
 
 /////////////////////////////////////////////////////////////////////////////////////
+
+function dropElements(arr, func) {
+  for (let i = 0; i < arr.length; i++) {
+    console.log(func(arr[i]));
+    if (!func(arr[i])) {
+      arr.splice(i, 1);
+      i = -1;
+    } else {
+      return arr;
+    }
+  }
+  return arr;
+}
+
+dropElements([1, 2, 3, 4], function(n) {
+  return n > 5;
+});
