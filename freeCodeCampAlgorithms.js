@@ -318,3 +318,13 @@ function steamrollArray(arr) {
 }
 
 steamrollArray([1, [2], [3, [[4]]]]);
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+function telephoneCheck(str) {
+  // Good luck!
+  var phoneno = /^(1\s?)?(\(\d{3}\)|\d{3})[\s\-]?\d{3}[\s\-]?\d{4}$/;
+  return phoneno.test(str);
+}
+
+telephoneCheck("555-555-5555");
