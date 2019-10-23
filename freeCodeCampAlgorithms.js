@@ -328,3 +328,79 @@ function telephoneCheck(str) {
 }
 
 telephoneCheck("555-555-5555");
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+const denominators = [
+  { name: "ONE HUNDRED", val: 100.0 },
+  { name: "TWENTY", val: 20.0 },
+  { name: "TEN", val: 10.0 },
+  { name: "FIVE", val: 5.0 },
+  { name: "ONE", val: 1.0 },
+  { name: "QUARTER", val: 0.25 },
+  { name: "DIME", val: 0.1 },
+  { name: "NICKEL", val: 0.05 },
+  { name: "PENNY", val: 0.01 }
+];
+
+function checkCashRegister(price, cash, cid) {
+  let out = { status: null, change: [] };
+  let change = cash - price;
+
+  let register = cid.reduce(
+    (acc, current) => {
+      acc.total += current[1];
+      acc[current[0]] = current[1];
+      return acc;
+    },
+    { total: 0 }
+  );
+
+  if (register.total === change) {
+    out.status = "CLOSED";
+    out.change = cid;
+    return out;
+  }
+  if (register.total < change) {
+    out.status = "INSUFFICIENT_FUNDS";
+    return out;
+  }
+
+  let changeArr = denominators.reduce((acc, current) => {
+    let value = 0;
+
+    while (register[current.name] > 0 && change >= current.val) {
+      change -= current.val;
+      register[current.name] -= current.val;
+      value += current.val;
+
+      change = Math.round(change * 100) / 100;
+    }
+
+    if (value > 0) {
+      acc.push([current.name, value]);
+    }
+    console.log(acc);
+    return acc;
+  }, []);
+  if (changeArr.length < 1 || change > 0) {
+    out.status = "INSUFFICIENT_FUNDS";
+    return out;
+  }
+  out.status = "OPEN";
+
+  out.change = changeArr;
+  return out;
+}
+
+checkCashRegister(19.5, 20, [
+  ["PENNY", 1.01],
+  ["NICKEL", 2.05],
+  ["DIME", 3.1],
+  ["QUARTER", 4.25],
+  ["ONE", 90],
+  ["FIVE", 55],
+  ["TEN", 20],
+  ["TWENTY", 60],
+  ["ONE HUNDRED", 100]
+]);
