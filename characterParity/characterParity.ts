@@ -1,8 +1,10 @@
-function characterParity(symbol: string): string {
-  if (isNaN(Number(symbol))) {
+function characterParity(symbol) {
+  let digit = parseInt(symbol);
+
+  if (isNaN(digit)) {
     return "not a digit";
   } else {
-    if (Number(symbol) % 2 === 0) {
+    if (digit % 2 === 0) {
       return "even";
     } else {
       return "odd";
@@ -10,6 +12,6 @@ function characterParity(symbol: string): string {
   }
 }
 
-console.log(characterParity("5"));
-console.log(characterParity("8"));
+console.log(characterParity("57"));
+console.log(characterParity("88"));
 console.log(characterParity("q"));
