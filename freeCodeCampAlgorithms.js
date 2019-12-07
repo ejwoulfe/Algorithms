@@ -321,6 +321,7 @@ steamrollArray([1, [2], [3, [[4]]]]);
 
 /////////////////////////////////////////////////////////////////////////////////////
 
+<<<<<<< HEAD
 function telephoneCheck(str) {
   // Good luck!
   var phoneno = /^(1\s?)?(\(\d{3}\)|\d{3})[\s\-]?\d{3}[\s\-]?\d{4}$/;
@@ -404,3 +405,159 @@ checkCashRegister(19.5, 20, [
   ["TWENTY", 60],
   ["ONE HUNDRED", 100]
 ]);
+=======
+
+function palindrome(str) {
+  // Good luck!
+  let purgedStr = str.toLowerCase().trim().replace(/[^\w]|_/g, "").replace(/\s+/g, " ");
+  let reversedStr = purgedStr.split("").reverse().join("");
+  console.log(purgedStr)
+  console.log(reversedStr)
+  return purgedStr == reversedStr;
+}
+
+
+palindrome("My age is 0, 0 si ega ym.");
+
+/////////////////////////////////////////////////////////////////////////////////////
+var Person = function (firstAndLast) {
+  // Complete the method below and implement the others similarly
+  this.getFullName = function () {
+    return firstAndLast;
+  }
+  this.getFirstName = function () {
+    return firstAndLast.split(" ")[0];
+  }
+  this.getLastName = function () {
+    return firstAndLast.split(" ")[1];
+  }
+  this.setFirstName = function (first) {
+    let name = firstAndLast.split(" ");
+    name[0] = first;
+    firstAndLast = name.join(" ");
+
+  }
+  this.setLastName = function (last) {
+    let name = firstAndLast.split(" ");
+    name[1] = last;
+    firstAndLast = name.join(" ");
+
+  }
+  this.setFullName = function (fullname) {
+    firstAndLast = fullname;
+
+
+  }
+
+};
+
+var bob = new Person('Bob Ross');
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+function addTogether() {
+  var checkNum = function (num) {
+    if (typeof num !== "number") {
+      return undefined;
+    } else return num;
+  };
+
+  if (arguments.length > 1) {
+    var a = checkNum(arguments[0]);
+    var b = checkNum(arguments[1]);
+    if (a === undefined || b === undefined) {
+      return undefined;
+    } else {
+      return a + b;
+    }
+  } else {
+    var c = arguments[0];
+
+    if (checkNum(c)) {
+      return function (arg2) {
+        if (c === undefined || checkNum(arg2) === undefined) {
+          return undefined;
+        } else {
+          return c + arg2;
+        }
+      };
+    }
+  }
+}
+
+addTogether(2, 3);
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+function orbitalPeriod(arr) {
+  var GM = 398600.4418;
+  var earthRadius = 6367.4447;
+
+  for (var prop in arr) {
+    var orbitalPer = Math.round(
+      2 * Math.PI * Math.sqrt(Math.pow(arr[prop].avgAlt + earthRadius, 3) / GM)
+    );
+    delete arr[prop].avgAlt;
+    arr[prop].orbitalPeriod = orbitalPer;
+  }
+
+  return arr;
+}
+
+orbitalPeriod([{ name: "sputnik", avgAlt: 35873.5553 }]);
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+const roman = {
+  1: "I",
+  2: "II",
+  3: "III",
+  4: "IV",
+  5: "V",
+  6: "VI",
+  7: "VII",
+  8: "VIII",
+  9: "IX",
+  10: "X",
+  20: "XX",
+  30: "XXX",
+  40: "XL",
+  50: "L",
+  60: "LX",
+  70: "LXX",
+  80: "LXXX",
+  90: "XC",
+  100: "C",
+  200: "CC",
+  300: "CCC",
+  400: "CD",
+  500: "D",
+  600: "DC",
+  700: "DCC",
+  800: "DCCC",
+  900: "CM",
+  1000: "M",
+  2000: "MM",
+  3000: "MMM"
+}
+function convertToRoman(num) {
+  let numberString = num.toString();
+  let resultArr = [];
+
+  for (let i = 0; i < numberString.length; i++) {
+    let letter = numberString[i];
+    for (let z = numberString.length - 1; z > i; z--) {
+      letter += "0";
+
+    }
+    resultArr.push(roman[letter])
+
+  }
+  return resultArr.join("")
+}
+
+console.log(convertToRoman(329));
+>>>>>>> 5ea04984d3c71803f204bb4a96b7bfcc80cf1926
